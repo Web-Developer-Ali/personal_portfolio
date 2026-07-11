@@ -62,7 +62,7 @@ export function Hero() {
           className="flex flex-col sm:flex-row gap-4 pt-2"
         >
           <Link
-            href="/case-studies/scalesflow-sales-platform"
+            href="/case-studies/scales-flow"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-cyan text-primary-foreground font-semibold hover:opacity-90 transition-all hover:gap-3 glow-primary shadow-lg"
           >
             See Scales Flow
