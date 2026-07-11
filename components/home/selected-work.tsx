@@ -1,34 +1,36 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { itemVariants, containerVariants } from "@/lib/animations";
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
+import { itemVariants, containerVariants } from '@/lib/animations'
 
 const projects = [
   {
     id: 1,
-    title: "Scales Flow",
-    description:
-      "A role-based CRM built for performance marketing agencies that have outgrown spreadsheets. Real-time pipeline visibility, team oversight, and clean data scoping.",
-    tags: ["Next.js", "PostgreSQL", "Role-based auth"],
-    metrics: [
-      "Multi-tenant architecture",
-      "Real-time pipeline",
-      "Three-role system",
-    ],
-    slug: "scales-flow",
+    title: 'Enterprise CRM Platform',
+    description: 'Built a comprehensive CRM system handling 50K+ users with real-time collaboration features.',
+    tags: ['Next.js', 'PostgreSQL', 'WebSockets'],
+    metrics: ['50K+ users', '99.9% uptime', '< 200ms response time'],
+    slug: 'crm-platform',
   },
   {
     id: 2,
-    title: "WorkSpan",
-    description:
-      "A unified workspace for distributed teams combining project management, communication, and documentation. Async-first design eliminates tool sprawl.",
-    tags: ["Next.js", "WebSockets", "PostgreSQL"],
-    metrics: ["Unified workspace", "Async-first", "Permission engine"],
-    slug: "workspan",
+    title: 'Real-time Analytics Dashboard',
+    description: 'Designed and implemented a high-performance analytics dashboard processing millions of events daily.',
+    tags: ['React', 'Node.js', 'Redis'],
+    metrics: ['1M+ events/day', 'Live dashboards', 'Custom visualizations'],
+    slug: 'analytics-dashboard',
   },
-];
+  {
+    id: 3,
+    title: 'AI-Powered Content Platform',
+    description: 'Created a platform leveraging generative AI for content creation with seamless UX.',
+    tags: ['Next.js', 'OpenAI', 'Stripe'],
+    metrics: ['10K+ active users', '$500K ARR', 'Multi-tenant'],
+    slug: 'ai-content',
+  },
+]
 
 export function SelectedWork() {
   return (
@@ -44,8 +46,7 @@ export function SelectedWork() {
         <motion.div variants={itemVariants} className="space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold">Selected Work</h2>
           <p className="text-lg text-foreground/70 max-w-2xl">
-            Showcasing projects that have delivered measurable impact and
-            technical excellence.
+            Showcasing projects that have delivered measurable impact and technical excellence.
           </p>
         </motion.div>
 
@@ -68,9 +69,7 @@ export function SelectedWork() {
                         <h3 className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors">
                           {project.title}
                         </h3>
-                        <p className="text-foreground/70 mt-2">
-                          {project.description}
-                        </p>
+                        <p className="text-foreground/70 mt-2">{project.description}</p>
                       </div>
                       <ArrowUpRight className="w-6 h-6 text-foreground/40 group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
                     </div>
@@ -78,10 +77,7 @@ export function SelectedWork() {
                     {/* Metrics */}
                     <div className="flex flex-wrap gap-4 pt-4">
                       {project.metrics.map((metric) => (
-                        <div
-                          key={metric}
-                          className="text-sm font-medium text-primary"
-                        >
+                        <div key={metric} className="text-sm font-medium text-primary">
                           {metric}
                         </div>
                       ))}
@@ -117,5 +113,5 @@ export function SelectedWork() {
         </motion.div>
       </motion.div>
     </section>
-  );
+  )
 }

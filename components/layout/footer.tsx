@@ -7,10 +7,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: GitBranch, href: '#', label: 'GitHub' },
-    { icon: Briefcase, href: '#', label: 'LinkedIn' },
-    { icon: Share2, href: '#', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:contact@example.com', label: 'Email' },
+    { icon: GitBranch, href: 'https://github.com/Web-Developer-Ali', label: 'GitHub' },
+    { icon: Briefcase, href: 'https://www.linkedin.com/in/ali-hamza-shoaib', label: 'LinkedIn' },
+    { icon: Share2, href: 'https://x.com/AliHamzaShoaib', label: 'Twitter' },
+    { icon: Mail, href: 'mailto:alihamzashoaibahmed@gmail.com', label: 'Email' },
   ]
 
   return (

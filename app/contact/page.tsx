@@ -1,34 +1,80 @@
-'use client'
+"use client";
 
-import type { Metadata } from 'next'
-import { useState } from 'react'
-import Link from 'next/link'
-import { Mail, Briefcase, GitBranch, Share2 } from 'lucide-react'
-import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+import { useState } from "react";
+import { Mail, Briefcase, GitBranch, Share2, Loader } from "lucide-react";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
-// Note: This is a placeholder. For a real implementation, add form handling
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Add form submission logic here
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Failed to send message");
+        setLoading(false);
+        return;
+      }
+
+      setSuccessMessage(
+        "Message sent successfully! I will get back to you soon.",
+      );
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setSuccessMessage("");
+      }, 5000);
+    } catch (err) {
+      setError("An error occurred. Please try again later.");
+      console.error("Contact form error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const socialLinks = [
-    { icon: Mail, href: 'mailto:contact@example.com', label: 'Email' },
-    { icon: GitBranch, href: '#', label: 'GitHub' },
-    { icon: Briefcase, href: '#', label: 'LinkedIn' },
-    { icon: Share2, href: '#', label: 'Twitter' },
-  ]
+    {
+      icon: Mail,
+      href: "mailto:alihamzashoaibahmed@gmail.com",
+      label: "Email",
+    },
+    {
+      icon: GitBranch,
+      href: "https://github.com/Web-Developer-Ali",
+      label: "GitHub",
+    },
+    {
+      icon: Briefcase,
+      href: "https://www.linkedin.com/in/ali-hamza-shoaib",
+      label: "LinkedIn",
+    },
+    { icon: Share2, href: "https://x.com/AliHamzaShoaib", label: "Twitter" },
+  ];
 
   return (
     <main className="min-h-screen bg-background">
@@ -38,7 +84,8 @@ export default function Contact() {
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold">Get in Touch</h1>
             <p className="text-lg text-foreground/70">
-              I&apos;m always interested in hearing about new projects and opportunities.
+              I&apos;m always interested in hearing about new projects and
+              opportunities.
             </p>
           </div>
 
@@ -48,7 +95,8 @@ export default function Contact() {
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Let&apos;s talk</h2>
                 <p className="text-foreground/70">
-                  Feel free to reach out using any of these methods. I typically respond within 24 hours.
+                  Feel free to reach out using any of these methods. I typically
+                  respond within 24 hours.
                 </p>
               </div>
 
@@ -59,10 +107,10 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-foreground/70 mb-1">Email</p>
                   <a
-                    href="mailto:contact@example.com"
+                    href="mailto:alihamzashoaibahmed@gmail.com"
                     className="text-lg font-medium text-primary hover:opacity-70 transition-opacity"
                   >
-                    contact@example.com
+                    alihamzashoaibahmed@gmail.com
                   </a>
                 </div>
               </div>
@@ -90,7 +138,9 @@ export default function Contact() {
                   Availability
                 </h3>
                 <p className="text-foreground/70">
-                  Available for select full-time roles, consulting projects, and collaborations. Currently booking projects for Q1 2025 onwards.
+                  Available for select full-time roles, consulting projects, and
+                  collaborations. Currently booking projects for Q1 2025
+                  onwards.
                 </p>
               </div>
             </div>
@@ -99,7 +149,10 @@ export default function Contact() {
             <div className="space-y-6">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Name
                   </label>
                   <input
@@ -116,7 +169,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Email
                   </label>
                   <input
@@ -133,7 +189,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -151,11 +210,33 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all"
+                  disabled={loading}
+                  className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
                 >
-                  {submitted ? 'Message Sent!' : 'Send Message'}
+                  {loading ? (
+                    <>
+                      <Loader className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : submitted ? (
+                    "Message Sent!"
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </form>
+
+              {error && (
+                <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                  {error}
+                </div>
+              )}
+
+              {successMessage && (
+                <div className="p-4 rounded-lg bg-emerald/10 border border-emerald/30 text-emerald-400 text-sm">
+                  {successMessage}
+                </div>
+              )}
 
               <p className="text-xs text-foreground/50 text-center">
                 I&apos;ll get back to you as soon as possible.
@@ -166,5 +247,5 @@ export default function Contact() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }

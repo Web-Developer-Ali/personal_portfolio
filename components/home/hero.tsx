@@ -1,19 +1,13 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { staggerContainer, itemVariants } from "@/lib/animations";
-import { GradientText } from "@/components/ui/gradient-text";
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight, Badge } from 'lucide-react'
+import { fadeIn, slideUp, staggerContainer, itemVariants } from '@/lib/animations'
+import { GradientText } from '@/components/ui/gradient-text'
 
 export function Hero() {
-  const technologies = [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Node.js",
-  ];
+  const technologies = ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Node.js']
 
   return (
     <section className="pt-32 md:pt-40 pb-20 md:pb-32 px-4 md:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -24,37 +18,30 @@ export function Hero() {
         className="space-y-8"
       >
         {/* Availability Badge */}
-        <motion.div
-          variants={itemVariants}
-          className="flex justify-center md:justify-start"
-        >
+        <motion.div variants={itemVariants} className="flex justify-center md:justify-start">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald/40 bg-gradient-to-r from-emerald/15 to-cyan/15 hover:from-emerald/25 hover:to-cyan/25 transition-all glow-accent">
             <div className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
-            <span className="text-sm text-foreground/90">
-              Available for select projects
-            </span>
+            <span className="text-sm text-foreground/90">Available for select projects</span>
           </div>
         </motion.div>
 
         {/* Headline */}
         <motion.div variants={itemVariants} className="space-y-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-            I build custom CRM and{" "}
-            <GradientText>operations systems</GradientText> for performance
-            marketing agencies
+            Building{' '}
+            <GradientText>
+              exceptional
+            </GradientText>
+            {' '}
+            digital experiences
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed">
-            If your agency is tracking deals in spreadsheets and getting updates
-            on WhatsApp, I build the system that replaces all of that —
-            role-based dashboards for every level of your team.
+            I craft performant, accessible, and thoughtfully designed systems that solve real business problems. With a focus on operational excellence and user experience.
           </p>
         </motion.div>
 
         {/* CTAs */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 pt-4"
-        >
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">
           <Link
             href="/work"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-cyan text-primary-foreground font-medium hover:opacity-90 transition-all hover:gap-3 glow-primary shadow-lg"
@@ -92,32 +79,21 @@ export function Hero() {
         </motion.div>
 
         {/* Credibility Section */}
-        <motion.div
-          variants={itemVariants}
-          className="pt-12 grid grid-cols-2 md:grid-cols-3 gap-8"
-        >
+        <motion.div variants={itemVariants} className="pt-12 grid grid-cols-2 md:grid-cols-3 gap-8">
           <div>
-            <p className="text-3xl md:text-4xl font-bold text-primary">4+</p>
-            <p className="text-sm text-foreground/70">Systems deployed</p>
+            <p className="text-3xl md:text-4xl font-bold text-primary">8+</p>
+            <p className="text-sm text-foreground/70">Years Building</p>
           </div>
           <div>
-            <p className="text-3xl md:text-4xl font-bold text-primary">Live</p>
-            <p className="text-sm text-foreground/70">Demo available</p>
+            <p className="text-3xl md:text-4xl font-bold text-primary">50+</p>
+            <p className="text-sm text-foreground/70">Projects Shipped</p>
           </div>
           <div>
-            <p className="text-3xl md:text-4xl font-bold text-primary">
-              Next.js
-            </p>
-            <p className="text-sm text-foreground/70">Primary stack</p>
-          </div>
-          <div>
-            <p className="text-3xl md:text-4xl font-bold text-primary">
-              PostgreSQL
-            </p>
-            <p className="text-sm text-foreground/70">Database layer</p>
+            <p className="text-3xl md:text-4xl font-bold text-primary">100%</p>
+            <p className="text-sm text-foreground/70">Client Satisfaction</p>
           </div>
         </motion.div>
       </motion.div>
     </section>
-  );
+  )
 }

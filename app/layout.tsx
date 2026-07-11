@@ -7,20 +7,25 @@ const geist = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Premium Developer Portfolio',
-  description: 'Showcasing engineering expertise through thoughtful design and deep technical work',
+  title: 'Ali Hamza | CRM Tool Developer & Full-Stack Engineer',
+  description: 'Full-stack developer specializing in CRM tools, MERN stack, and Next.js. Building scalable solutions for marketing agencies and SaaS platforms.',
   generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/favicon.ico',
+        sizes: '32x32',
+      },
+      {
+        url: '/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png',
       },
     ],
   },
   openGraph: {
-    title: 'Premium Developer Portfolio',
-    description: 'Showcasing engineering expertise through thoughtful design and deep technical work',
+    title: 'Ali Hamza | CRM Tool Developer & Full-Stack Engineer',
+    description: 'Full-stack developer specializing in CRM tools, MERN stack, and Next.js. Building scalable solutions for marketing agencies and SaaS platforms.',
     type: 'website',
   },
 }
